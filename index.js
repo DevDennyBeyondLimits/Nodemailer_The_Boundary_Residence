@@ -14,10 +14,14 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send-email", (req, res) => {
-  console.log(req.body);
-  sendEmail(req.body);
+  try {
+    console.log(req.body);
+    sendEmail(req.body);
 
-  return res.status(201).json({ message: "email was sent successfully" });
+    return res.status(201).json({ message: "email was sent successfully" });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(5000, () => {
